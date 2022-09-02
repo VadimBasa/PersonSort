@@ -1,11 +1,15 @@
 import java.util.*;
+import java.util.function.Predicate;
 
 class Main {
+    //@FunctionalInterface
+    //public interface Predicate<Person> extends java.util.function.Predicate<Person> {
+    //    boolean test (Person t);
+    //}
     public static void main(String[] args) {
-
         List<Person> people2 = Arrays.asList(
-                new Person("Николай", "Валуеваев", 52),
-                new Person("Виктор", "Цой", 32),
+                new Person("Николай", "Валуеваев", 17),
+                new Person("Виктор", "Цой", 16),
                 new Person("Наталья", "Васильева-Бернард-Шоу", 40),
                 new Person("Брюс", "Миклухо-Маклай-Маклаевич", 30),
                 new Person("Константин", "Салтыков-Щедрин", 51)
@@ -13,7 +17,14 @@ class Main {
         Comparator<Person> comparator;
         comparator = Main::compare;
         Collections.sort(people2, comparator);
-        System.out.println(people2.toString());
+        //System.out.println(people2.toString());
+        List<Person> peopleList = new ArrayList<>(List.of());
+        peopleList.addAll(people2);
+        Predicate<Person> isTooYang = (Person p) -> p.getAge() < 18;
+        {
+            peopleList.removeIf(isTooYang);
+            System.out.println(peopleList.toString());
+        }
     }
 
     private static int compare(Person o1, Person o2) {

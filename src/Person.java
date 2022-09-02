@@ -19,7 +19,7 @@ public class Person implements Comparable<Person> {
         return surname;
     }
 
-    public int age() {
+    public int getAge() {
         return age;
     }
 
